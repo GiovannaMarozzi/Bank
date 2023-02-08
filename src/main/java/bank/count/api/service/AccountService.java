@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -14,9 +13,6 @@ public class AccountService {
 
     @Autowired
     private AccountRepository repository;
-
-    @Autowired
-    private AccountRepositoryById repositoryById;
 
     @Transactional
     public Account cadAccount(Account informations){
@@ -28,9 +24,7 @@ public class AccountService {
         return repository.findAll().stream().map(ListAccounts::new).toList();
     }
 
-    @Transactional
-    public List<ListAccountsById> transferById(Long number){
-        return repositoryById.findAllById(Collections.singleton(number)).stream().map(ListAccountsById::new).toList();
+    public List<ListAccounts> listById(Long number){
+        return repository.findByNumber(number).stream().map(ListAccounts::new).toList();
     }
-
 }
