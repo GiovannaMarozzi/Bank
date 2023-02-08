@@ -10,18 +10,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-public class Account {
+
+public class Account{
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
 
         @Column(name = "number_account", nullable = false)
-        int number;
+        private Double number = Math.random()*5;
 
         @NotBlank
         private String nome;
