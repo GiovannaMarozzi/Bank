@@ -26,4 +26,10 @@ public class TransactionsService {
         accountService.deposit(informations.getValue(), informations.getNumber());
         return repository.save(informations);
     }
+
+    @Transactional
+    public Transactions withdraw(Transactions informations){
+        accountService.withdraw(informations.getValue(), informations.getNumber());
+        return repository.save(informations);
+    }
 }

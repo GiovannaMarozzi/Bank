@@ -31,6 +31,15 @@ public class AccountService {
     @Transactional
     public void deposit(Float value, Long number){
         var account = repository.getReferenceById(number);
-        account.deposit(value);
+        var balance = account.getSaldo();
+        account.deposit(value, balance);
     }
+
+    @Transactional
+    public void withdraw(Float value, Long number){
+        var account = repository.getReferenceById(number);
+        var balance = account.getSaldo();
+        account.withdraw(value, balance);
+    }
+
 }

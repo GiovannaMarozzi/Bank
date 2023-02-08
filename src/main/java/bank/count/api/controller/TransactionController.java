@@ -14,15 +14,14 @@ public class TransactionController {
 
     @Autowired
     public TransactionsService service;
-    @PostMapping
+    @PostMapping("/deposit")
     public Transactions deposit(@RequestBody @Valid Transactions informations){
         return service.deposit(informations);
     }
 
-//    @GetMapping("/document={number}")
-//    public Account transferById(@PathVariable Long number){
-//
-//
-//    }
+    @PostMapping("/withdraw")
+    public Transactions withdraw(@RequestBody @Valid Transactions informations){
+        return service.withdraw(informations);
+    }
 
 }

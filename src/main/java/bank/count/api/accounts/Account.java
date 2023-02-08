@@ -21,7 +21,6 @@ public class Account{
 //        private Long id;
         @Id
         @Column(name = "number_account", nullable = false)
-//        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer number = (int) ((Math.random()*10000000) +1);
 
         @NotBlank
@@ -50,8 +49,12 @@ public class Account{
         @Column(name = "saldo", nullable = false)
         private Float saldo;
 
-        public void deposit(Float value){
-            this.saldo = value;
+        public void deposit(Float value, Float balance){
+            this.saldo = balance + value;
+        }
+
+        public void withdraw(Float value, Float balance){
+                this.saldo = balance - value;
         }
 
 }
