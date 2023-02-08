@@ -23,6 +23,10 @@ public class Transactions {
     @Column(name = "name", nullable = false)
     private String nome;
 
+    @NotNull
+    @Column(name = "number", nullable = false)
+    private Long number;
+
     @NotBlank
     @Pattern(regexp = "\\d{11}")
     @Column(name = "CPF", nullable = false)

@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
+import java.util.Optional;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,12 +17,11 @@ import lombok.*;
 
 public class Account{
 
+//        @GeneratedValue(strategy = GenerationType.AUTO)
+//        private Long id;
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        private Long id;
-
         @Column(name = "number_account", nullable = false)
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+//        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer number = (int) ((Math.random()*10000000) +1);
 
         @NotBlank
@@ -48,4 +49,9 @@ public class Account{
         @NotNull
         @Column(name = "saldo", nullable = false)
         private Float saldo;
+
+        public void deposit(Float value){
+            this.saldo = value;
+        }
+
 }

@@ -14,15 +14,15 @@ public class TransactionController {
 
     @Autowired
     public TransactionsService service;
-
     @PostMapping
     public Transactions deposit(@RequestBody @Valid Transactions informations){
         return service.deposit(informations);
     }
 
-    @GetMapping("/document={cpf}")
-    public Account transferById(@PathVariable Long cpf){
-        return null;
-    }
+//    @GetMapping("/document={number}")
+//    public Account transferById(@PathVariable Long number){
+//
+//
+//    }
 
 }

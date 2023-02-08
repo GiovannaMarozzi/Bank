@@ -27,4 +27,10 @@ public class AccountService {
     public List<ListAccounts> listById(Long number){
         return repository.findByNumber(number).stream().map(ListAccounts::new).toList();
     }
+
+    @Transactional
+    public void deposit(Float value, Long number){
+        var account = repository.getReferenceById(number);
+        account.deposit(value);
+    }
 }

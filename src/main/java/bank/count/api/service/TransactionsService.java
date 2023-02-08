@@ -18,8 +18,12 @@ public class TransactionsService {
     @Autowired
     private TransactionsRepository repository;
 
+    @Autowired
+    private AccountService accountService;
+
     @Transactional
     public Transactions deposit(Transactions informations){
+        accountService.deposit(informations.getValue(), informations.getNumber());
         return repository.save(informations);
     }
 }
