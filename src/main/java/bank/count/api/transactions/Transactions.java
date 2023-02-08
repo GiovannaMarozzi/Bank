@@ -43,5 +43,5 @@ public class Transactions {
 
     @NotNull
     @Column(name = "type", nullable = false)
-    private Float type;
+    private String type;
 }
