@@ -42,4 +42,18 @@ public class AccountService {
         account.withdraw(value, balance);
     }
 
+    @Transactional
+    public void transfer(Float value, Long number){
+        var account = repository.getReferenceById(number);
+        var balanceAccount = account.getSaldo();
+        account.transfer(value, balanceAccount);
+    }
+
+    @Transactional
+    public void transferAccount(Float value, Long accountSecond){
+        var accountForTransfer = repository.getReferenceById(accountSecond);
+        var balanceAccountForTransfer = accountForTransfer.getSaldo();
+        accountForTransfer.transferAccount(value, balanceAccountForTransfer);
+    }
+
 }

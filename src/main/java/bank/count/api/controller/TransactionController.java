@@ -1,7 +1,6 @@
 package bank.count.api.controller;
 
 
-import bank.count.api.accounts.Account;
 import bank.count.api.service.TransactionsService;
 import bank.count.api.transactions.Transactions;
 import jakarta.validation.Valid;
@@ -23,5 +22,12 @@ public class TransactionController {
     public Transactions withdraw(@RequestBody @Valid Transactions informations){
         return service.withdraw(informations);
     }
+
+    @PutMapping("/transfer")
+    public void transfer(@RequestBody @Valid Transactions informations){
+        service.transfer(informations);
+    }
+
+
 
 }

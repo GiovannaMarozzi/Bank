@@ -57,4 +57,12 @@ public class Account{
                 this.saldo = balance - value;
         }
 
+        public void transfer(Float value, Float balanceAccount){
+                this.saldo = balanceAccount - value;
+        }
+
+        public void transferAccount(Float value, Float balanceAccountForTransfer){
+                this.saldo = balanceAccountForTransfer + value;
+        }
+
 }

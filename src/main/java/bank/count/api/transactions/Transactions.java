@@ -27,6 +27,8 @@ public class Transactions {
     @Column(name = "number", nullable = false)
     private Long number;
 
+    private Long accountTransfer;
+
     @NotBlank
     @Pattern(regexp = "\\d{11}")
     @Column(name = "CPF", nullable = false)
