@@ -3,6 +3,7 @@ package bank.count.api.controller;
 
 import bank.count.api.accounts.Account;
 import bank.count.api.accounts.ListAccounts;
+import bank.count.api.accounts.ListAccountsById;
 import bank.count.api.service.AccountService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,11 @@ public class AccountsController {
     @ResponseStatus(HttpStatus.OK)
     public List<ListAccounts> listAccounts(){
         return service.listAccounts();
+    }
+
+    @GetMapping("/document={number}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ListAccountsById> transferById(@PathVariable Long number){
+        return service.transferById(number);
     }
 }

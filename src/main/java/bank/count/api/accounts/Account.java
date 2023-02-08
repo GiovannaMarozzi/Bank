@@ -5,11 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 
 @Data
 @AllArgsConstructor
@@ -18,12 +14,14 @@ import lombok.NoArgsConstructor;
 @Entity
 
 public class Account{
+
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
 
         @Column(name = "number_account", nullable = false)
-        private Double number = Math.random()*5;
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Integer number = (int) ((Math.random()*10000000) +1);
 
         @NotBlank
         private String nome;
