@@ -30,9 +30,17 @@ public class TransactionsService {
     }
 
     @Transactional
-    public Transactions withdraw(Transactions informations){
-        accountService.withdraw(informations.getValue(), informations.getNumber());
-        return repository.save(informations);
+    public Object withdraw(Transactions informations){
+        var account = accountRepository.getReferenceById(informations.getNumber());
+        var balance = account.getSaldo();
+
+        if(Float.compare(informations.getValue(), balance) > 0){
+            System.out.println("O valor que deseja sacar é maior do que o seu saldo");
+            return new ResponseEntity(null, HttpStatus.FORBIDDEN);
+        }else{
+            accountService.withdraw(informations.getValue(), informations.getNumber());
+            return repository.save(informations);
+        }
     }
 
     @Transactional

@@ -23,7 +23,7 @@ public class TransactionController {
     }
 
     @PostMapping("/withdraw")
-    public Transactions withdraw(@RequestBody @Valid Transactions informations){
+    public Object withdraw(@RequestBody @Valid Transactions informations){
         return service.withdraw(informations);
     }
 
