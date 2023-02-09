@@ -30,9 +30,9 @@ public class TransactionsService {
     }
 
     @Transactional
-    public void transfer(Transactions informations){
+    public Transactions transfer(Transactions informations){
         accountService.transfer(informations.getValue(), informations.getNumber());
         accountService.transferAccount(informations.getValue(), informations.getAccountTransfer());
-        repository.save(informations);
+        return repository.save(informations);
     }
 }

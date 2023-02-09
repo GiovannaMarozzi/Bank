@@ -2,6 +2,8 @@ package bank.count.api.service;
 
 import bank.count.api.accounts.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,7 +48,13 @@ public class AccountService {
     public void transfer(Float value, Long number){
         var account = repository.getReferenceById(number);
         var balanceAccount = account.getSaldo();
-        account.transfer(value, balanceAccount);
+
+        if(account.getSaldo() < value){
+            System.out.println("O valor que deseja transferir é maior do que o seu saldo");
+            new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }else{
+            account.transfer(value, balanceAccount);
+        }
     }
 
     @Transactional
