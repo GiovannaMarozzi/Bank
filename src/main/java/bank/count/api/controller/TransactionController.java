@@ -30,7 +30,7 @@ public class TransactionController {
     @PutMapping("/transfer")
     public Object transfer(@RequestBody @Valid Transactions informations){
         if(Objects.equals(informations.getAccountTransfer(), informations.getNumber()) == true){
-            System.out.println("Não é possível fazer transferencias para a mesma conta");
+            System.out.println("Não é possível realizar transferencias para a mesma conta");
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }else{
             return service.transfer(informations);
