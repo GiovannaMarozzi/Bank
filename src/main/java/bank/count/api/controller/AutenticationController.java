@@ -1,5 +1,6 @@
 package bank.count.api.controller;
 
+import bank.count.api.accounts.ListAccounts;
 import bank.count.api.security.AuthenticationJWT;
 import bank.count.api.service.TokenService;
 import bank.count.api.service.AutenticationService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/autentication")
@@ -30,8 +32,10 @@ public class AutenticationController {
     private AutenticationService service;
 
     @PostMapping("/cad")
-    public Users cadUsers(@RequestBody @Valid Users informations){
-        return service.save(informations);
+    public ResponseEntity cadUsers(@RequestBody @Valid Users informations, UriComponentsBuilder uriBuilder){
+        service.save(informations);
+        var uri = uriBuilder.path("/autentication/cad/{id}").buildAndExpand(informations.getNumber());
+        return ResponseEntity.created(uri.toUri()).body(new ListAccounts(informations));
     }
 
     @PostMapping

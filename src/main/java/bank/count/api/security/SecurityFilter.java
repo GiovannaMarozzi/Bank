@@ -1,6 +1,5 @@
 package bank.count.api.security;
 
-import bank.count.api.accounts.Account;
 import bank.count.api.service.TokenService;
 import bank.count.api.user.UsersRepository;
 import jakarta.servlet.FilterChain;
