@@ -18,11 +18,11 @@ public class AccountsController {
     @Autowired
     private AccountService service;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Account cadAccount(@RequestBody @Valid Account informations){
-        return service.cadAccount(informations);
-    }
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public Account cadAccount(@RequestBody @Valid Account informations){
+//        return service.cadAccount(informations);
+//    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)

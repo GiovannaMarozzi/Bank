@@ -5,6 +5,7 @@ package bank.count.api.service;
 import bank.count.api.accounts.AccountRepository;
 import bank.count.api.transactions.Transactions;
 import bank.count.api.transactions.TransactionsRepository;
+import bank.count.api.user.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class TransactionsService {
     private TransactionsRepository repository;
 
     @Autowired
-    private AccountRepository accountRepository;
+    private UsersRepository accountRepository;
 
     @Autowired
     private AccountService accountService;
