@@ -23,14 +23,29 @@ public class TransactionController {
     private UsersRepository repository;
 
     @PostMapping("/deposit")
-    public Transactions deposit(@RequestBody @Valid Transactions informations){
-        return service.deposit(informations);
+    public Object deposit(@RequestBody @Valid Transactions informations){
+        var exist = repository.getReferenceById(informations.getNumber());
 
+        if(exist == null){
+            System.out.println("Essa conta é inexistente");
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }else{
+            service.deposit(informations);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
     }
 
     @PostMapping("/withdraw")
     public Object withdraw(@RequestBody @Valid Transactions informations){
-        return service.withdraw(informations);
+        var exist = repository.findByNumber(informations.getNumber());
+
+        if(exist == null){
+            System.out.println("Essa conta é inexistente");
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }else{
+            service.withdraw(informations);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
     }
 
     @PutMapping("/transfer")

@@ -16,7 +16,7 @@ public class TransactionsService {
     private TransactionsRepository repository;
 
     @Autowired
-    private UsersRepository accountRepository;
+    private UsersRepository usersRepository;
 
     @Autowired
     private AccountService accountService;
@@ -29,7 +29,7 @@ public class TransactionsService {
 
     @Transactional
     public Object withdraw(Transactions informations){
-        var account = accountRepository.getReferenceById(informations.getNumber());
+        var account = usersRepository.getReferenceById(informations.getNumber());
         var balance = account.getSaldo();
 
         if(Float.compare(informations.getValue(), balance) > 0){
@@ -43,9 +43,6 @@ public class TransactionsService {
 
     @Transactional
     public Object transfer(Transactions informations){
-//        var account = accountRepository.getReferenceById(informations.getNumber());
-//        var balanceAccount = account.getSaldo();
-//
         accountService.transfer(informations.getValue(), informations.getNumber());
         accountService.transferAccount(informations.getValue(), informations.getAccountTransfer());
         return repository.save(informations);
