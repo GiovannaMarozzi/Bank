@@ -43,19 +43,12 @@ public class TransactionsService {
 
     @Transactional
     public Object transfer(Transactions informations){
-        var account = accountRepository.getReferenceById(informations.getNumber());
-        var balanceAccount = account.getSaldo();
-
-        if(Float.compare(informations.getValue(),balanceAccount) > 0){
-            System.out.println("O valor que deseja transferir é maior do que o seu saldo");
-            return new ResponseEntity(null, HttpStatus.FORBIDDEN);
-        }else{
-            accountService.transfer(informations.getValue(), informations.getNumber());
-            accountService.transferAccount(informations.getValue(), informations.getAccountTransfer());
-            return repository.save(informations);
-        }
-
-
+//        var account = accountRepository.getReferenceById(informations.getNumber());
+//        var balanceAccount = account.getSaldo();
+//
+        accountService.transfer(informations.getValue(), informations.getNumber());
+        accountService.transferAccount(informations.getValue(), informations.getAccountTransfer());
+        return repository.save(informations);
 
     }
 }
