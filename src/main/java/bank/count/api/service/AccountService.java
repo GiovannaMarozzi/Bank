@@ -3,8 +3,6 @@ package bank.count.api.service;
 import bank.count.api.accounts.*;
 import bank.count.api.user.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,15 +13,7 @@ import java.util.List;
 public class AccountService {
 
     @Autowired
-    private AccountRepository repository;
-
-    @Autowired
     private UsersRepository usersRepository;
-
-//    @Transactional
-//    public Account cadAccount(Account informations){
-//        return repository.save(informations);
-//    }
 
     @Transactional
     public List<ListAccounts> listAccounts(){
