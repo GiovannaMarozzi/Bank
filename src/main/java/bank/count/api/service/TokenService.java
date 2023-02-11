@@ -20,7 +20,7 @@ public class TokenService {
     private String secret;
     public String generationToken(Users user ) {
         try {
-            var algorithm = Algorithm.HMAC256(secret);
+            var algorithm = Algorithm.HMAC256("HmacSHA256");
             return JWT.create()
                     .withIssuer("authenticate")
                     .withSubject(user.getLogin())
@@ -33,7 +33,7 @@ public class TokenService {
     }
     public String getSubject(String token){
         try {
-            var algorithm = Algorithm.HMAC256(secret);
+            var algorithm = Algorithm.HMAC256("HmacSHA256");
             return JWT.require(algorithm)
                     .withIssuer("authenticate")
                     .build()
