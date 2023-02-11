@@ -64,5 +64,5 @@ public class TokenServiceTest {
         assertEquals("teste@gmail.com", result);
     }
 
-    
+
 }

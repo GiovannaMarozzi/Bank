@@ -21,11 +21,11 @@ public class AuthenticationServiceTest {
 
     @Test
     public void loginByUsername(){
-        String username = "teste@gmail.com";
+        String username = "testeByName@gmail.com";
 
         Users user = new Users();
         user.setNome("Teste");
-        user.setLogin("teste@gmail.com");
+        user.setLogin("testeByName@gmail.com");
         user.setPassword("$2a$12$lyqIlgbTtf5lKuLeKrnkme/NxILTj9DYmypjNTGBVBytezBdRCytO");
         user.setCpf("12345678955");
         user.setRg("536079766");
@@ -33,11 +33,14 @@ public class AuthenticationServiceTest {
         user.setSaldo(0.00F);
 
         repository.save(user);
-        var result = repository.findByLogin(username);
+        var login = repository.findByLogin(username);
+        int result =0;
 
-        assertNotNull(result);
+        if(login != null){
+            result = 1;
+        }
 
-
+        assertEquals(1, result);
     }
 
     @Test
