@@ -77,7 +77,7 @@ public class AuthenticationControllerTest {
         json.put("password", "12345678"); //Password corrective = 123456
 
         mockMvc.perform(post("/autentication/auth")
-                .content(String.valueOf(user))
+                .content(String.valueOf(json))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
                 .andExpect(status().isForbidden());
 
