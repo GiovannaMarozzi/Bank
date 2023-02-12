@@ -59,4 +59,9 @@ public class AccountService {
         return transactionsRepository.findByNumber(document).stream().map(Extract::new).toList();
 
     }
+
+    public void block(Long document) {
+        var accountBlocked = usersRepository.getReferenceById(document);
+        accountBlocked.block();
+    }
 }

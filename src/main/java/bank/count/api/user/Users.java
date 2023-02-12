@@ -33,9 +33,14 @@ public class Users implements UserDetails {
     private String password;
 
     @NotBlank
-    @Pattern(regexp = "\\d{11}")
-    @Column(name = "cpf", nullable = false)
-    private String cpf;
+    @Column(name = "cpf_or_cnpj", nullable = false)
+    private String cpf_or_cnpj;
+
+    @NotBlank
+    @Column(name = "type_document", nullable = false)
+    private String type_document;
+
+
 
     @NotBlank
     @Pattern(regexp = "\\d{9}")
@@ -49,6 +54,10 @@ public class Users implements UserDetails {
     @NotNull
     @Column(name = "saldo", nullable = false)
     private Float saldo;
+
+    @NotNull
+    @Column(name = "status", nullable = false)
+    private String status = "Ativo";
 
     public float deposit(Float value, Float balance){
         this.saldo = balance + value;
@@ -67,6 +76,10 @@ public class Users implements UserDetails {
 
     public void transferAccount(Float value, Float balanceAccountForTransfer){
         this.saldo = balanceAccountForTransfer + value;
+    }
+
+    public void block(){
+        this.status = "Bloqueado";
     }
 
     @Override
