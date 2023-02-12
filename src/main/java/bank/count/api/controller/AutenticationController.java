@@ -38,7 +38,7 @@ public class AutenticationController {
         return ResponseEntity.created(uri.toUri()).body(new ListAccounts(informations));
     }
 
-    @PostMapping
+    @PostMapping("/auth")
     public ResponseEntity autentication(@RequestBody @Valid Autentication autentication){
         var authenticationToken = new UsernamePasswordAuthenticationToken(autentication.login(), autentication.password());
         var authenticate = manager.authenticate(authenticationToken);
