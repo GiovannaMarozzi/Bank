@@ -31,7 +31,7 @@ public class SecurityConfigurations {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/autentication/cad").permitAll()
-                .requestMatchers(HttpMethod.POST, "/autentication").permitAll()
+                .requestMatchers(HttpMethod.POST, "/autentication/auth").permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/h2/**")).permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
