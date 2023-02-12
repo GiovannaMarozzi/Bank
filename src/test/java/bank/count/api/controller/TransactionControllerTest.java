@@ -83,7 +83,8 @@ public class TransactionControllerTest {
         user.setNumber(1478523998);
         user.setLogin("testeByName@gmail.com");
         user.setPassword("$2a$12$lyqIlgbTtf5lKuLeKrnkme/NxILTj9DYmypjNTGBVBytezBdRCytO");
-        user.setCpf("12345678955");
+        user.setCpf_or_cnpj("12345678955");
+        user.setType_document("cpf");
         user.setRg("536079766");
         user.setCel("11 00000-0000");
         user.setSaldo(0.00F);
@@ -107,7 +108,8 @@ public class TransactionControllerTest {
         user.setNumber(1478523998);
         user.setLogin("testeByName@gmail.com");
         user.setPassword("$2a$12$lyqIlgbTtf5lKuLeKrnkme/NxILTj9DYmypjNTGBVBytezBdRCytO");
-        user.setCpf("12345678955");
+        user.setCpf_or_cnpj("12345678955");
+        user.setType_document("cpf");
         user.setRg("536079766");
         user.setCel("11 00000-0000");
         user.setSaldo(0.00F);

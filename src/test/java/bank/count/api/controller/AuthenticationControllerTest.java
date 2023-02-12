@@ -48,7 +48,8 @@ public class AuthenticationControllerTest {
         json.put("nome", "Teste");
         json.put("login", "testeByName@gmail.com");
         json.put("Password", "$2a$12$lyqIlgbTtf5lKuLeKrnkme/NxILTj9DYmypjNTGBVBytezBdRCytO");
-        json.put("cpf", "12345678955");
+        json.put("cpf_or_cnpj", "12345678955");
+        json.put("type_document", "cpf");
         json.put("rg", "536079766");
         json.put("cel", "11 00000-0000");
         json.put("saldo", 0.00);
@@ -65,7 +66,7 @@ public class AuthenticationControllerTest {
         user.setNome("Teste");
         user.setLogin("testeByName@gmail.com");
         user.setPassword("$2a$12$lyqIlgbTtf5lKuLeKrnkme/NxILTj9DYmypjNTGBVBytezBdRCytO");
-        user.setCpf("12345678955");
+        user.setCpf_or_cnpj("12345678955");
         user.setRg("536079766");
         user.setCel("11 00000-0000");
         user.setSaldo(0.00F);
