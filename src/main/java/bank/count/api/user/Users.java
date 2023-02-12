@@ -1,24 +1,19 @@
 package bank.count.api.user;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 
 
 @Entity(name = "Users")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "number_account")
@@ -38,9 +33,14 @@ public class Users implements UserDetails {
     private String password;
 
     @NotBlank
-    @Pattern(regexp = "\\d{11}")
-    @Column(name = "cpf", nullable = false)
-    private String cpf;
+    @Column(name = "cpf_or_cnpj", nullable = false)
+    private String cpf_or_cnpj;
+
+    @NotBlank
+    @Column(name = "type_document", nullable = false)
+    private String type_document;
+
+
 
     @NotBlank
     @Pattern(regexp = "\\d{9}")
@@ -55,20 +55,31 @@ public class Users implements UserDetails {
     @Column(name = "saldo", nullable = false)
     private Float saldo;
 
-    public void deposit(Float value, Float balance){
+    @NotNull
+    @Column(name = "status", nullable = false)
+    private String status = "Ativo";
+
+    public float deposit(Float value, Float balance){
         this.saldo = balance + value;
+        return saldo;
     }
 
-    public void withdraw(Float value, Float balance){
+    public float withdraw(Float value, Float balance){
         this.saldo = balance - value;
+        return saldo;
     }
 
-    public void transfer(Float value, Float balanceAccount){
+    public float transfer(Float value, Float balanceAccount){
         this.saldo = balanceAccount - value;
+        return saldo;
     }
 
     public void transferAccount(Float value, Float balanceAccountForTransfer){
         this.saldo = balanceAccountForTransfer + value;
+    }
+
+    public void block(){
+        this.status = "Bloqueado";
     }
 
     @Override

@@ -1,6 +1,7 @@
 package bank.count.api.controller;
 
 
+import bank.count.api.accounts.Extract;
 import bank.count.api.service.TransactionsService;
 import bank.count.api.transactions.Transactions;
 import bank.count.api.user.UsersRepository;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -45,6 +47,20 @@ public class TransactionController {
         }else{
             service.withdraw(informations);
             return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/extract/document={document}")
+    public List<Extract> extract(@PathVariable Long document){
+        var exist = repository.findByNumber(document);
+
+        if(exist == null){
+            System.out.println("Essa conta é inexistente");
+            return (List<Extract>) new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
+        }else{
+            return service.extract(document);
+
         }
     }
 

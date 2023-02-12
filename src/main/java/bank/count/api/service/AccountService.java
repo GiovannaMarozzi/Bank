@@ -1,6 +1,7 @@
 package bank.count.api.service;
 
 import bank.count.api.accounts.*;
+import bank.count.api.transactions.TransactionsRepository;
 import bank.count.api.user.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class AccountService {
 
     @Autowired
     private UsersRepository usersRepository;
+
+    @Autowired
+    private TransactionsRepository transactionsRepository;
 
     @Transactional
     public List<ListAccounts> listAccounts(){
@@ -51,4 +55,13 @@ public class AccountService {
         accountForTransfer.transferAccount(value, balanceAccountForTransfer);
     }
 
+    public List<Extract> extract(Long document) {
+        return transactionsRepository.findByNumber(document).stream().map(Extract::new).toList();
+
+    }
+
+    public void block(Long document) {
+        var accountBlocked = usersRepository.getReferenceById(document);
+        accountBlocked.block();
+    }
 }

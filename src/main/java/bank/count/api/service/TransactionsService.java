@@ -1,5 +1,6 @@
 package bank.count.api.service;
 
+import bank.count.api.accounts.Extract;
 import bank.count.api.transactions.Transactions;
 import bank.count.api.transactions.TransactionsRepository;
 import bank.count.api.user.UsersRepository;
@@ -8,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class TransactionsService {
@@ -47,5 +50,10 @@ public class TransactionsService {
         accountService.transferAccount(informations.getValue(), informations.getAccountTransfer());
         return repository.save(informations);
 
+    }
+
+    @Transactional
+    public List<Extract> extract(Long document) {
+        return accountService.extract(document);
     }
 }
