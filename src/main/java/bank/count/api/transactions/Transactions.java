@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -39,9 +41,8 @@ public class Transactions {
     @Column(name = "RG", nullable = false)
     private String rg;
 
-    @NotBlank
     @Column(name = "date", nullable = false)
-    private String date_transaction;
+    private String date_transaction = String.valueOf(new Date());
 
     @NotNull
     @Column(name = "transaction_value", nullable = false)
