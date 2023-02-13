@@ -29,6 +29,7 @@ public class Transactions {
     @Column(name = "number", nullable = false)
     private Long number;
 
+    @Column(name = "accountTransfer", nullable = false)
     private Long accountTransfer;
 
     @NotBlank
